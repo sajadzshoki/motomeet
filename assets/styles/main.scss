@@ -1,0 +1,88 @@
+//@import "transition";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+:root{
+  --toastify-font-family: Inter, sans-serif
+}
+html{
+  scroll-behavior: smooth;
+
+}
+
+body {
+  font-family: Inter, serif;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color:#333333;
+}
+div {
+  box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+input {
+  min-width: 0;
+  width: 100%;
+  @apply bg-transparent;
+  outline-offset: 0 !important;
+  outline: none !important;
+  font-family: Inter, sans-serif;
+  border: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+textarea {
+  font-family: inherit;
+  resize: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/* Entire scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Vertical */
+  height: 10px; /* Horizontal */
+}
+
+/* Track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Handle (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #43C1B0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #349F90;
+}
+
+/* Thin scrollbar */
+.scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0; /* thumb color | track color */
+}
