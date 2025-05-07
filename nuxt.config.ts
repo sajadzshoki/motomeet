@@ -3,16 +3,18 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: {enabled: false},
     ssr: false,
+    // pages: false,
     modules: [
         '@nuxt/content',
         '@nuxt/fonts',
-        '@nuxt/icon',
         '@nuxt/image',
         '@nuxt/test-utils',
-        '@unocss/nuxt'
+        '@unocss/nuxt',
+        'nuxt-icons',
+        '@nuxt/icon',
     ],
 
-        css: ['@/assets/styles/main.scss'],
-
+    css: ['@/assets/styles/main.scss' , 'vue-json-pretty/lib/styles.css'],
+    plugins:['@/plugins/vue-json-pretty']
 
 })
