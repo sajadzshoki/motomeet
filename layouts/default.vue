@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="h-full h-dvh">
+  <div class="h-full flexCol">
     <TheHeader/>
-    <div class="bg-gradient-to-t from-primary-900 to-gray-900 h-dvh p-4 mt-22">
+    <div class="grow-1 bg-gradient-to-t  h-max from-primary-900 to-gray-900  p-4 mt-22 ">
       <slot/>
     </div>
     <TheBottomNavigation/>
