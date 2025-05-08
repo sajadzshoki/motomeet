@@ -15,38 +15,21 @@ export default defineConfig({
     theme: {
         colors: {
             primary: {
-                100: '#DCF9F1',
-                200: '#B1F1DF',
-                300: '#86EACE',
-                400: '#5AE2BC',
-                500: '#2EDAAA',
-                600: '#20B68C',
-                700: '#198B6B',
-                800: '#115F49',
-                900: '#093428',
+                100: '#E8E9FF',
+                200: '#C5C7FA',
+                300: '#A3A4F3',
+                400: '#8182EC',
+                500: '#5E60E5',
+                600: '#4B4CB8',
+                700: '#39398A',
+                800: '#26265C',
+                900: '#13132F',
             },
-            // primary: {
-            //     100: '#E8E9FF',  // very light tint
-            //     200: '#C5C7FA',
-            //     300: '#A3A4F3',
-            //     400: '#8182EC',
-            //     500: '#5E60E5',  // base indigo-violet
-            //     600: '#4B4CB8',
-            //     700: '#39398A',
-            //     800: '#26265C',
-            //     900: '#13132F',  // near black
-            // },
-            // primary2: {
-            //     100: '#F0F3FF',   // soft icy periwinkle
-            //     200: '#D5DCFF',
-            //     300: '#B1BAFF',
-            //     400: '#8B98FF',
-            //     500: '#6575FF',   // base: bright periwinkle-blue
-            //     600: '#505DD1',
-            //     700: '#3B45A3',
-            //     800: '#262E75',
-            //     900: '#111747',   // very dark indigo-blue
-            // },
+            secondary: {
+                400:'#262740',
+                500: '#1B1C2E',
+                900: '#040406'
+            },
             gray: {
                 100: '#E6E6E6',
                 200: '#CCCCCC',
@@ -70,10 +53,10 @@ export default defineConfig({
         }
     },
     shortcuts: {
-        'default' : 'flex flex-col items-center justify-center p-3 gap-2 rounded-md border-(1 solid gray-400) bg-gray-100',
-        'flexCol' : 'flex flex-col',
-        'flexCenter' : 'items-center justify-center',
-        'mainBorder':'border-(1 solid gray-200 )',
+        'default': 'flex flex-col items-center justify-center p-3 gap-2 rounded-md border-(1 solid gray-400) bg-gray-100',
+        'flexCol': 'flex flex-col',
+        'flexCenter': 'items-center justify-center',
+        'mainBorder': 'border-(1 solid gray-200 )',
 
     },
 

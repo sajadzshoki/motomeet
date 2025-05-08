@@ -1,20 +1,22 @@
 //@import "transition";
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 :root{
-  --toastify-font-family: Inter, sans-serif
+  font-family: IranSansX, sans-serif;
+  --toastify-font-family: IranSansX, sans-serif
 }
 html{
   scroll-behavior: smooth;
+  direction: rtl;
 
 }
 
 body {
-  font-family: Inter, serif;
+  font-family: IranSansX, sans-serif;
   font-style: normal;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color:#333333;
+  color:#FFFFFF;
 }
 div {
   box-sizing: border-box;
@@ -36,7 +38,7 @@ input {
   @apply bg-transparent;
   outline-offset: 0 !important;
   outline: none !important;
-  font-family: Inter, sans-serif;
+  font-family: IranSansX, sans-serif;
   border: none;
 }
 

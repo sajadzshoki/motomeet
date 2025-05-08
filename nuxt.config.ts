@@ -14,7 +14,13 @@ export default defineNuxtConfig({
         '@nuxt/icon',
     ],
 
-    css: ['@/assets/styles/main.scss' , 'vue-json-pretty/lib/styles.css'],
-    plugins:['@/plugins/vue-json-pretty']
+    css: [
+        '@/assets/styles/main.scss',
+        'vue-json-pretty/lib/styles.css',
+        "@/assets/fonts/fontiran.css"
+    ],
+    plugins: [
+        '@/plugins/vue-json-pretty'
+    ]
 
 })

@@ -4,6 +4,5 @@
     <NuxtLayout>
       <NuxtPage/>
     </NuxtLayout>
-    <TheBottomNavigation/>
   </div>
 </template>
