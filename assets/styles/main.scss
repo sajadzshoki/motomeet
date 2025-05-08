@@ -62,25 +62,25 @@ input[type=number] {
 }
 /* Entire scrollbar */
 ::-webkit-scrollbar {
-  width: 10px; /* Vertical */
-  height: 10px; /* Horizontal */
+  width: 0; /* Vertical */
+  height: 0; /* Horizontal */
 }
 
 /* Track (background of the scrollbar) */
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: gray;
   border-radius: 10px;
 }
 
 /* Handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: #43C1B0;
+  background: #5E60E5;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #349F90;
+  background: #4B4CB8;
 }
 
 /* Thin scrollbar */

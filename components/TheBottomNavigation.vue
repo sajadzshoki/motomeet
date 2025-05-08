@@ -37,16 +37,16 @@ const Buttons = ref([
     link: 'index'
   },
   {
-    label: 'چت',
-    icon: 'chat',
-    iconFill: 'chatFill',
-    link: 'chat'
-  },
-  {
     label: 'موتو مدیا',
     icon: 'social',
     iconFill: 'socialFill',
     link: 'social'
+  },
+  {
+    label: 'چت',
+    icon: 'chat',
+    iconFill: 'chatFill',
+    link: 'chat'
   },
   {
     label: 'من',
