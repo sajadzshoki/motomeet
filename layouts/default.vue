@@ -1,17 +1,15 @@
-<script setup lang="ts">
-
-</script>
 
 <template>
-  <div class="h-full flexCol">
+
+  <div class="h-full flexCol ">
     <TheHeader/>
-    <div class="grow-1 bg-gradient-to-t  h-max from-primary-900 to-gray-900  p-4 mt-22 ">
+    <div class="flex-1 bg-gradient-to-t  from-primary-900 to-gray-900 p-4 mt-22 pb-30 ">
       <slot/>
     </div>
     <TheBottomNavigation/>
   </div>
 </template>
 
-<style scoped>
+<script setup lang="ts">
 
-</style>
+</script>

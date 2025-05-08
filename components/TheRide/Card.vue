@@ -2,7 +2,7 @@
   <div
       class="!min-w-50 !min-h-50 rounded-3xl bg-gray-300 overflow-hidden justify-end flexCol gap-2 relative p-4 children:(z-1)">
     <div class="absolute inset-0 w-full h-full bg-gradient-to-t  from-gray-800 to-transparent"></div>
-    <TheNuxtIcon icon-type="img" name="ride1.png" class="absolute !z-0 left-0 top-0 !w-full !h-full object-cover"/>
+    <TheNuxtIcon icon-type="img" :name="item" class="absolute !z-0 left-0 top-0 !w-full !h-full object-cover"/>
     <!--    creator-->
     <div class="flex gap-1 items-center ">
       <TheNuxtIcon icon-type="img" name="profile1.png" class="!w-4 !h-4 rounded-full object-cover"/>
@@ -24,5 +24,7 @@
 </template>
 
 <script setup lang="ts">
-
+defineProps<{
+  item:any
+}>()
 </script>
