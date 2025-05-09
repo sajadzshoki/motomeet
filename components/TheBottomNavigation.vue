@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bg-secondary-900 rounded-t-7 z-2 shadow-[0_0px_5px_rgba(0,0,0,0.1)] fixed bottom-0 w-full  px-12 flex gap-6 justify-center ">
+      class="bg-secondary-900 rounded-t-10 z-2 shadow-[0_0px_5px_rgba(0,0,0,0.1)] fixed bottom-0 w-full  px-12 flex gap-6 justify-center ">
     <span class="bg-secondary-900 transition-transform duration-700  bottom-10  w-13 h-13 rounded-full absolute border-(7 solid gray-900)"
           :style="{ transform: `translateX(${Buttons[selectedItem].dis})` }" >
       <span class="w-2.5 h-2.5 magic-shadow1 absolute -left-16px top-21px rounded-tr-full"></span>
@@ -63,7 +63,7 @@ const Buttons = ref([
     icon: 'chat',
     iconFill: 'chatFill',
     link: 'chat',
-    dis:"-2.9rem"
+    dis:"-3rem"
   },
   {
     label: 'من',
