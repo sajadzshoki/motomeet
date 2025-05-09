@@ -5,13 +5,14 @@ export default defineNuxtConfig({
     ssr: false,
     // pages: false,
     modules: [
-        '@nuxt/content',
-        '@nuxt/fonts',
-        '@nuxt/image',
-        '@nuxt/test-utils',
-        '@unocss/nuxt',
-        'nuxt-icons',
-        '@nuxt/icon',
+      '@nuxt/content',
+      '@nuxt/fonts',
+      '@nuxt/image',
+      '@nuxt/test-utils',
+      '@unocss/nuxt',
+      'nuxt-icons',
+      '@nuxt/icon',
+      '@vueuse/nuxt'
     ],
 
     css: [

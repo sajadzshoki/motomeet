@@ -21,7 +21,7 @@
         :style="{ color: fill ? 'white' : color ? color : 'black' }"
     />
 
-    <p v-show="!loading" class="font-normal whitespace-nowrap"
+    <p v-show="!loading" class="font-normal whitespace-nowrap text-sm leading-6.5"
        :style="{ color: fill ? 'white' : color ? color : 'gray-700' }"
        :class="mini?'text-sm':'text-base'">{{ loading ? '' : label }}
     </p>
