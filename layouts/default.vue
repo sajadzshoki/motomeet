@@ -7,7 +7,7 @@
     <div class="flex-1 bg-gray-900 p-4 mt-22 pb-30 ">
       <slot/>
     </div>
-    <TheBottomNavigation/>
+    <TheBottomNavigation2/>
   </div>
 
 </template>
