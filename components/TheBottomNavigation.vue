@@ -3,9 +3,10 @@
       class="bg-secondary-900 rounded-t-10 z-2 shadow-[0_0px_5px_rgba(0,0,0,0.1)] fixed bottom-0 w-full  px-12 flex gap-6 justify-center ">
     <span class="bg-secondary-900 transition-transform duration-700  bottom-10  w-13 h-13 rounded-full absolute border-(7 solid gray-900)"
           :style="{ transform: `translateX(${Buttons[selectedItem].dis})` }" >
-      <span class="w-2.5 h-2.5 magic-shadow1 absolute -left-16px top-21px rounded-tr-full"></span>
-      <span class=" w-2.5 h-2.5  magic-shadow2 absolute -right-16px top-21px rounded-tl-full"></span>
+      <span class="w-2.5 h-2.5 magic-shadow1 absolute -left-17px top-20px rounded-tr-full"></span>
+      <span class=" w-2.5 h-2.5  magic-shadow2 absolute -right-17px top-20px rounded-tl-full"></span>
     </span>
+
     <div @click="handleSelectItem(item.link,index)" v-for="(item,index) in Buttons"
          class=" cursor-pointer px-2 py-3  flexCol items-center justify-baseline gap-1 "
          :class="isActive(item) ?'font-semibold   text-primary-400':'text-gray-400'">
@@ -70,7 +71,7 @@ const Buttons = ref([
     icon: 'profile',
     iconFill: 'profileFill',
     link: 'profile',
-    dis:"-6.9rem"
+    dis:"-6.95rem"
   },
 ])
 </script>
