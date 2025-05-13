@@ -17,7 +17,7 @@
     </div>
     <!--    map and theme -->
     <div class="flex gap-4 mr-auto">
-      <TheNuxtIcon @click="toggleTheme" icon-type="svg" class="text-2xl" :name="theme === 'dark' ?'sun':'moon'"/>
+<!--      <TheNuxtIcon @click="toggleTheme" icon-type="svg" class="text-2xl" :name="theme === 'dark' ?'sun':'moon'"/>-->
     <NuxtLink class="relative ">
       <TheNuxtIcon icon-type="svg" name="map" class="text-2xl "/>
       <span class="w-2.5 h-2.5 rounded-full absolute bottom-0 -right-0.5 bg-red-500"></span>
