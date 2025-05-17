@@ -5,7 +5,7 @@
       <TheNuxtIcon icon-type="img"
                    name="map.png"
                    class="absolute !z-0 left-0 top-0 !w-full !h-full object-cover"/>
-      <TheNuxtIcon icon-type="img" name="locationAlert.png" class="!w-auto !h-17 absolute left-15 "/>
+      <TheNuxtIcon icon-type="img" name="locationAlert.png" class="!w-auto !h-17 absolute left-10 "/>
       <!---------------->
       <div class="rounded-full bg-(primary-400 opacity-30) px-2 w-fit">
         <p class="text-(2.5) leading-5 flex gap-1">
@@ -14,15 +14,15 @@
         </p>
       </div>
       <!---------------->
-      <div class="flex gap-2">
-        <TheNuxtIcon icon-type="svg" name="circle-outline" class=""/>
+      <div class="flex gap-2 mt-5">
+        <TheNuxtIcon icon-type="svg" name="location-group" class="text-lg"/>
         <div class="flexCol gap-3">
           <p class="text-(xs) font-semibold">تهران، شهرک غرب</p>
           <p class="text-(xs) font-semibold">{{ truncateText('تهران، میدان جهاد، میدان سلماس ...', 35) }}</p>
         </div>
       </div>
       <!---------------->
-      <div class="self-end">
+      <div class="self-end px-1">
         <TheUsersAvatar/>
       </div>
       <!---------------->

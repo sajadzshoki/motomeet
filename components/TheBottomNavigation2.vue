@@ -1,13 +1,13 @@
 <template>
-  <div class="flex items-center  bg-none z-2  p-6  fixed bottom-0 w-full">
+  <div class="flex items-center  bg-none z-2  py-6 px-8  fixed bottom-0 w-full">
   <div class="bg-black bg-opacity-60   backdrop-blur-12   rounded-full w-full flex justify-evenly ">
     <div @click="handleSelectItem(item.link,index)" v-for="(item,index) in Buttons"
-         class=" cursor-pointer  p-2 pt-3 duration-300 flexCol items-center justify-baseline gap-1 "
+         class=" cursor-pointer py-5   duration-300 flexCol items-center justify-baseline gap-1 "
          :class="isActive(item) ?'font-semibold text-primary-400 shadow-active':'text-gray-400'">
       <TheNuxtIcon :name="isActive(item) ? item.iconFill :item.icon"
-                   icon-type="svg" class="text-xl z-1 hover:(scale-110)"
-                   :class="isActive(item)?'':''"/>
-      <p class="text-(xs nowrap) leading-6.5" :class="isActive(item)?'':''">{{ item.label }}</p>
+                   icon-type="svg" class=" z-1 hover:(scale-110)"
+                   :class="isActive(item)?'text-2xl':'text-xl'"/>
+<!--      <p class="text-(xs nowrap) leading-6.5" :class="isActive(item)?'':''">{{ item.label }}</p>-->
     </div>
   </div>
   </div>
@@ -61,8 +61,8 @@ const Buttons = ref([
   },
   {
     label: 'من',
-    icon: 'profile',
-    iconFill: 'profileFill',
+    icon: 'profile-helmet',
+    iconFill: 'profile-helmet-fill',
     link: 'profile',
     dis:"-6.95rem"
   },

@@ -3,7 +3,7 @@
           @click="link && navigateTo({name:link})"
           class="flex flexCenter rounded-full gap-3 cursor-pointer border-none relative hover:brightness-80 transition-brightness duration-100 "
           :class="[
-          disable?'bg-gray-300 border-transparent':fill?'bg-primary-700 border-transparent ':'!bg-white border-(1 solid primary-800) ',
+          disable?'bg-gray-300 border-transparent':fill?'bg-primary-700 border-transparent ':'bg-transparent text-primary-200 border-(1 solid primary-200) ',
           disable?'opacity-100 cursor-not-allowed ':'',
           mini?'py-1 px-2 min-w-15':'py-2 px-3 min-w-20']"
           :style="{
@@ -18,7 +18,8 @@
         :name="loading ? 'loading' : icon"
         icon-type="svg"
         class="text-lg flex flexCenter"
-        :style="{ color: fill ? 'white' : color ? color : 'black' }"
+        :class="iconClass"
+        :style="{ color: fill ? 'white' : color ? color : 'primary-200' }"
     />
 
     <p v-show="!loading" class="font-normal whitespace-nowrap text-sm leading-6.5"
@@ -36,6 +37,7 @@
 withDefaults(defineProps<{
   fill?: boolean,
   icon?: string,
+  iconClass?:string,
   label: string,
   disable?: boolean,
   mini?: boolean,
