@@ -1,0 +1,9 @@
+project name :
+motomeet
+pass:
+Sajad@2001
+
+url:
+https://qtwfrhcudlispsopeyvx.supabase.co
+anon public :
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d2ZyaGN1ZGxpc3Bzb3BleXZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc1OTU2NDEsImV4cCI6MjA2MzE3MTY0MX0.s0X6WbkxAGkNdp1o-zXfy3-AyXGzFtoSPXgslGvA7Yg
