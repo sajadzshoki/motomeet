@@ -1,14 +1,14 @@
 <template>
   <div class="-m-4">
     <div class="grid grid-cols-3 gap-0.5 auto-rows-[170px] ">
-      <div
+      <NuxtLink :to="{ name: 'social-id' , params:{id:index} }"
           v-for="(img, index) in displayedImages"
           :key="index"
           :class="getGridClass(index)"
           class="overflow-hidden"
       >
         <TheNuxtIcon :name="img" class="h-full w-full object-cover" />
-      </div>
+      </NuxtLink>
     </div>
     <div class="flex items-center justify-center w-full">
 
