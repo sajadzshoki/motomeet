@@ -3,9 +3,11 @@
           @click="link && navigateTo({name:link})"
           class="flex flexCenter rounded-full gap-3 cursor-pointer border-none relative hover:brightness-80 transition-brightness duration-100 "
           :class="[
-          disable?'bg-gray-300 border-transparent':fill?'bg-primary-700 border-transparent ':'bg-transparent text-primary-200 border-(1 solid primary-200) ',
-          disable?'opacity-100 cursor-not-allowed ':'',
-          mini?'py-1 px-2 min-w-15':'py-2 px-3 min-w-20']"
+          disable?'bg-primary-800 border-transparent':fill?'bg-primary-700 border-transparent ':'bg-transparent text-primary-200 border-(1 solid primary-200) ',
+          disable?'opacity-40 cursor-not-allowed ':'',
+          mini?'py-1 px-2 min-w-15':'py-2 px-3 min-w-20',
+          cancel? !fill && 'border-red-500 text-red-500':'',
+          disable && cancel && '!border-(gray-50 1 solid) !text-gray-100 !bg-transparent']"
           :style="{
           borderColor: !fill && color ? color : '',
           borderWidth: !fill && color ? '0.5px' : '',
@@ -44,7 +46,9 @@ withDefaults(defineProps<{
   color?: string,
   badge?: number,
   loading?: boolean,
-  link?:string
+  link?:string,
+  cancel?: boolean,
+
 }>(), {
   fill: true,
   badge: 0,

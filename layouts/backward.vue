@@ -1,6 +1,6 @@
 <template>
   <div class="h-full flexCol ">
-    <div class="bg-secondary-500 w-full flex items-center justify-between p-4">
+    <div class="bg-secondary-500 sticky top-0 z-5 w-full flex items-center justify-between p-4">
       <TheNuxtIcon name="nav-right" icon-type="svg" class="text-2xl cursor-pointer" @click="router.back()"/>
       <p class="font-semibold !text-(sm center)">{{ title }}</p>
       <NuxtLink class="relative ">
