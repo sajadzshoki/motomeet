@@ -126,8 +126,14 @@ export default defineConfig({
         },
         red: {
             500: '#DF2040'
-        }
-        }
+        },
+            screenMain:'#131420',
+            screenGray:'#191919'
+
+        },
+        boxShadow:{
+            insetClub:'80px 80px 200px 0px #000 inset'
+        },
     },
     shortcuts: {
         'default': 'flex flex-col items-center justify-center p-3 gap-2 rounded-md border-(1 solid gray-400) bg-gray-100',
@@ -136,6 +142,7 @@ export default defineConfig({
         'mainBorder': 'border-(1 solid gray-200 )',
 
     },
+
 
     presets: [
         presetWind3(),

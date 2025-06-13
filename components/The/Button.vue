@@ -5,7 +5,7 @@
           :class="[
           disable?'bg-primary-800 border-transparent':fill?'bg-primary-700 border-transparent ':'bg-transparent text-primary-200 border-(1 solid primary-200) ',
           disable?'opacity-40 cursor-not-allowed ':'',
-          mini?'py-1 px-2 min-w-15':'py-2 px-3 min-w-20',
+          mini?'py-1 px-4 min-w-15':'py-3 px-3 min-w-20',
           cancel? !fill && 'border-red-500 text-red-500':'',
           disable && cancel && '!border-(gray-50 1 solid) !text-gray-100 !bg-transparent']"
           :style="{
@@ -15,6 +15,11 @@
           cursor: disable ? 'not-allowed' : 'pointer'
     }"
   >
+
+    <p v-show="!loading" class="font-normal whitespace-nowrap text-sm leading-6.5"
+       :style="{ color: fill ? 'white' : color ? color : 'gray-700' }"
+       :class="mini?'text-sm':'text-base'">{{ loading ? '' : label }}
+    </p>
     <LazyTheNuxtIcon
         v-if="icon || loading"
         :name="loading ? 'loading' : icon"
@@ -23,11 +28,6 @@
         :class="iconClass"
         :style="{ color: fill ? 'white' : color ? color : 'primary-200' }"
     />
-
-    <p v-show="!loading" class="font-normal whitespace-nowrap text-sm leading-6.5"
-       :style="{ color: fill ? 'white' : color ? color : 'gray-700' }"
-       :class="mini?'text-sm':'text-base'">{{ loading ? '' : label }}
-    </p>
 
     <span
         v-show="badge"

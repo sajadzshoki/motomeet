@@ -12,6 +12,7 @@
     </div>
   </div>
   <TheHomeNoRides v-else/>
+  <TheFab/>
 </template>
 
 <script setup lang="ts">

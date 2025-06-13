@@ -7,7 +7,7 @@
         <TheNuxtIcon icon-type="svg" name="map" class="text-xl "/>
       </NuxtLink>
     </div>
-    <div class="flex-1 bg-gray-900 p-4 ">
+    <div class="flex-1 bg-screenMain p-4 ">
       <slot/>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center  bg-none z-2  py-6 px-8  fixed bottom-0 w-full">
+  <div class="flex items-center  bg-none z-2  py-2 px-8  fixed bottom-0 w-full">
   <div class="bg-black bg-opacity-60   backdrop-blur-12   rounded-full w-full flex justify-evenly ">
-    <div @click="handleSelectItem(item.link,index)" v-for="(item,index) in Buttons"
+    <div @click="handleSelectItem(item.link,item.param,index)" v-for="(item,index) in Buttons"
          class=" cursor-pointer py-5   duration-300 flexCol items-center justify-baseline gap-1 "
          :class="isActive(item) ?'font-semibold text-primary-400 shadow-active':'text-gray-400'">
       <TheNuxtIcon :name="isActive(item) ? item.iconFill :item.icon"
@@ -21,9 +21,9 @@
 <script setup lang="ts">
 const route = useRoute()
 const selectedItem = ref<number>(0)
-const handleSelectItem = (item: string, index: number) => {
+const handleSelectItem = (item: string,param:any ,index: number) => {
   selectedItem.value = index
-  navigateTo({name: item})
+  navigateTo({name: item,params:param})
 }
 
 interface ButtonItem {
@@ -63,7 +63,8 @@ const Buttons = ref([
     label: 'من',
     icon: 'profile-helmet',
     iconFill: 'profile-helmet-fill',
-    link: 'profile',
+    link: 'profile-id',
+    param: {id:1},
     dis:"-6.95rem"
   },
 ])

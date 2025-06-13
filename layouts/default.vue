@@ -2,16 +2,16 @@
 <template>
 
 
-  <div class="h-full flexCol ">
+  <div class="h-full flexCol bg-primary-900 ">
     <TheHeader/>
-    <div class="flex-1 bg-gray-900 p-4 mt-22 pb-30 ">
+    <div class="flex-1 bg-screenMain p-4 mt-22  " :class="route.name !== 'profile-id'?'pb-30':''">
       <slot/>
     </div>
-    <TheBottomNavigation2/>
+    <TheBottomNavigation2 v-if="route.name !== 'profile'"/>
   </div>
 
 </template>
 
 <script setup lang="ts">
-
+const route = useRoute()
 </script>

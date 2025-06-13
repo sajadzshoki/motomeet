@@ -1,8 +1,8 @@
 
 <template>
-  <div class="flex flex-col gap-1.5 relative bg-bg">
+  <div class="flex flex-col  relative bg-bg">
 
-    <p v-if="label" class="text-(sm gray-900) leading-6.5 px-1"
+    <p v-if="label" class="text-(sm ) leading-6.5 px-1"
        :class="[labelClass , focused &&'text-primary-600'] ">
       {{ label }}
     </p>
@@ -22,7 +22,7 @@
              v-model="value"
              :type="inputTypeLocal"
              :inputmode="inputMode"
-             class="flex-grow h-9 bg-transparent placeholder-(gray-600 text-base) text-gray-900 font-300 text-xs"
+             class="flex-grow h-9 bg-transparent placeholder-(gray-600 text-base) text-gray-100  text-xs"
              :class="inputClass"
              :disabled="disabled"
              :placeholder="!focused ? placeholder : value || ''"
@@ -32,7 +32,7 @@
                 v-model="value"
                 :placeholder="placeholder"
                 :disabled="disabled"
-                class="border-none text-sm font-400 grow c-gray-900 placeholder:(text-gray-600) outline-none bg-transparent h-20"
+                class="border-none text-sm font-400 grow c-gray-100 placeholder:(text-gray-600) outline-none bg-transparent h-20"
                 @focus="date ? inputTypeLocal = 'date' : ''"
                 @blur="date ? inputTypeLocal = 'text' : ''"
       />
@@ -40,7 +40,7 @@
       <TheNuxtIcon v-if="password"
                    :name="inputTypeLocal === 'text' ? 'eye-slash' : 'eye'"
                    icon-type="svg"
-                   class="text-gray-900 cursor-pointer"
+                   class="text-gray-100 cursor-pointer"
                    @click="inputTypeLocal = inputTypeLocal ==='text' ? 'password' : 'text'"
       />
 
@@ -83,10 +83,10 @@ const props= withDefaults(defineProps<{
   bgStyle?: string;
   focusable?: boolean;
 }>(),{
-  className:'rounded-lg bg-gray-50',
-  valueClassName:'border-(1 solid gray-400) bg-bg',
+  className:'rounded-lg bg-secondary-800',
+  valueClassName:' bg-bg',
   focusClassName:'border-(2 solid primary-600) !bg-bg',
-  labelClass:'bg-gray-30',
+  labelClass:'text-gray-100',
   appendIconType:'svg',
   appendIconClass:'!svg:(w-5 h-5)',
   inputType:'text',

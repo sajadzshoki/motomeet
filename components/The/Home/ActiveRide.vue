@@ -1,5 +1,5 @@
 <template>
-  <div class="h-45 rounded-b-30 bg-secondary-500 px-8 mb-8 -m-4 ">
+<!--  <div class="h-45  px-8 mb-8 -m-4 ">-->
     <div class="min-h-52 relative flexCol justify-between rounded-2xl  overflow-hidden p-4 children:(z-1)">
       <div class="absolute inset-0 w-full h-full bg-gradient-to-b  opacity-20  from-gray-800 to-primary-600"></div>
       <TheNuxtIcon icon-type="img"
@@ -30,7 +30,7 @@
         <TheButton label="رفتن به مسیر " link="profile"/>
 
     </div>
-  </div>
+<!--  </div>-->
 </template>
 <script setup lang="ts">
 
