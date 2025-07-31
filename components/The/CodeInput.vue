@@ -33,6 +33,7 @@ const handleOnChange = ($event)=>{
 <style lang="scss">
 #code-input {
   gap: 1rem;
+  @apply flex justify-between;
 
   .otp-input {
     @apply w-12 h-12 flex justify-between   b-rd-2 text-(center white) bg-secondary-800

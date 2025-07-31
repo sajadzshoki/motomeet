@@ -12,11 +12,12 @@
     </div>
   </div>
   <TheHomeNoRides v-else/>
-  <TheFab/>
+<TheHomeAdd/>
 </template>
 
 <script setup lang="ts">
 const ride = ref(true)
+
 const images=[
   'ride1.png',
   'ride2.png',

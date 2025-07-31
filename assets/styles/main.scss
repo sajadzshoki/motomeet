@@ -109,6 +109,9 @@ body {
   margin: 0;
   box-sizing: border-box;
   //color: var(--color-gray-100);
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
   color: white;
 }
 div {
@@ -133,6 +136,9 @@ input {
   outline: none !important;
   font-family: IranSansX, sans-serif;
   border: none;
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
 }
 
 button {

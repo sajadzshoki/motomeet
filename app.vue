@@ -6,3 +6,12 @@
     </NuxtLayout>
   </div>
 </template>
+
+<script setup lang="ts">
+const userId = useCookie('userId')
+if(!userId.value){
+  navigateTo({name:'login'})
+}
+
+
+</script>

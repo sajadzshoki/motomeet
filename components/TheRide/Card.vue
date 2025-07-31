@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="{name:'ride-id' , params:{id:1}}"
       class="aspect-square !min-w-45 rounded-3xl overflow-hidden justify-end flexCol gap-2 relative p-4 children:(z-1)">
-    <div class="absolute inset-0 w-full h-full bg-gradient-to-t  from-gray-800 to-transparent  hover:from-gray-900"></div>
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-t  from-gray-800 to-transparent  "></div>
     <TheNuxtIcon icon-type="img" :name="item" class="absolute !z-0 left-0 top-0 !w-full !h-full object-cover"/>
     <!--    creator-->
     <div class="flex gap-1 items-center ">

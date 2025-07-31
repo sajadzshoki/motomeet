@@ -1,10 +1,13 @@
 <template>
-  <div
-      class="flex flexCenter  cursor-pointer border-(1  solid) h-5 w-5 b-rd-1.5  relative"
-      @click="toggleCheck"
-      :class="isChecked ?'border-(1 primary-500 solid)':'border-gray-400'"
-  >
-    <div v-if="isChecked" class="!w-3.5 !h-3.5 b-rd-1 bg-primary-500"></div>
+  <div class="flex items-center gap-2 ">
+    <div
+        class="flex flexCenter  cursor-pointer border-(1 solid) h-4 w-4 b-rd-1  relative"
+        @click="toggleCheck"
+        :class="isChecked ?'border-(1 gray-800 solid)':'border-gray-500'"
+    >
+      <div v-if="isChecked" class="!w-2.8 !h-2.8 b-rd-0.5 bg-primary-500"></div>
+    </div>
+    <p class="text-(xs gray-100)" :class="labelClass">{{ label }}</p>
   </div>
 </template>
 
@@ -14,6 +17,8 @@ const check = defineModel<any>() // support both boolean or array
 const props = defineProps<{
   value?: string | number
   multi?: boolean
+  label?: string,
+  labelClass?: string,
 }>()
 
 const isChecked = computed(() => {

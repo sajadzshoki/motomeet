@@ -2,17 +2,19 @@
 <template>
   <div class="flex flex-col  relative bg-bg">
 
-    <p v-if="label" class="text-(sm ) leading-6.5 px-1"
-       :class="[labelClass , focused &&'text-primary-600'] ">
+    <p v-if="label" class="text-(xs ) leading-7 px-1"
+       :class="[labelClass , focused &&'text-primary-600',validation&&'text-red-500'] ">
       {{ label }}
     </p>
 
     <div
         v-on-click-outside="()=>focused = false"
-        class="flex relative px-3 py-2 gap-1 h-12 items-center"
-        :class="[value && !focused ? valueClassName : focused ? focusClassName : bgStyle,className , inputTypeLocal==='textarea'&&'h-26']">
+        class="flex relative px-3 py-2 gap-1 h-12 items-center rounded-lg bg-secondary-500"
+        :class="[value && !focused ? valueClassName : focused ? focusClassName : bgStyle,className ,
+         inputTypeLocal==='textarea'&&'h-26',validation&&'border-(red-500 solid 1 )']">
 
-      <TheNuxtIcon v-if="prependIcon" :name="prependIcon" icon-type="svg" :class="[iconColor ? iconColor : 'text-gray-400']"  />
+      <TheNuxtIcon v-if="prependIcon" :name="prependIcon" icon-type="svg"
+                   :class="[iconColor ? iconColor : 'text-gray-400',inputTypeLocal==='textarea'&&'self-start mt-1']"  />
 
       <slot name="prependComponent" />
 <!--     <TheIRDatePicker v-if="date" v-model="value" format="YYYY-MM-DD[T]HH:mm:ssZ" class="text-text" :class="calendarClass" display-format="jDD jMMMM jYYYY" :placeholder="placeholder"/>&ndash;&gt;-->
@@ -22,9 +24,10 @@
              v-model="value"
              :type="inputTypeLocal"
              :inputmode="inputMode"
-             class="flex-grow h-9 bg-transparent placeholder-(gray-600 text-base) text-gray-100  text-xs"
+             class="flex-grow h-9 bg-transparent placeholder-(gray-500 text-xs) text-gray-100  text-xs"
              :class="inputClass"
              :disabled="disabled"
+             @input="onInputLimit"
              :placeholder="!focused ? placeholder : value || ''"
               @focus="date ? inputTypeLocal = 'date' : focused = true"
       />
@@ -32,7 +35,7 @@
                 v-model="value"
                 :placeholder="placeholder"
                 :disabled="disabled"
-                class="border-none text-sm font-400 grow c-gray-100 placeholder:(text-gray-600) outline-none bg-transparent h-20"
+                class="border-none text-sm font-400 grow c-gray-100 placeholder:(text-gray-500 text-xs) outline-none bg-transparent h-20"
                 @focus="date ? inputTypeLocal = 'date' : ''"
                 @blur="date ? inputTypeLocal = 'text' : ''"
       />
@@ -82,8 +85,10 @@ const props= withDefaults(defineProps<{
   iconColor?: string;
   bgStyle?: string;
   focusable?: boolean;
+  validation?:boolean
+  maxLength?: number;
 }>(),{
-  className:'rounded-lg bg-secondary-800',
+  className:'',
   valueClassName:' bg-bg',
   focusClassName:'border-(2 solid primary-600) !bg-bg',
   labelClass:'text-gray-100',
@@ -91,7 +96,13 @@ const props= withDefaults(defineProps<{
   appendIconClass:'!svg:(w-5 h-5)',
   inputType:'text',
 })
-
+const onInputLimit = (e: Event) => {
+  const input = e.target as HTMLInputElement;
+  if (input.value.length > props.maxLength) {
+    input.value = input.value.slice(0, props.maxLength);
+    value.value = input.value;
+  }
+};
 const emit = defineEmits(['append', 'update:modelValue','clearInput'])
 const value = defineModel()
 const focused = ref(false);
