@@ -50,3 +50,7 @@ export const putProfile = async (data: Partial<Profile>, id: string) => {
     const {result} = await usePut(`/profile/${id}`, data)
     return result
 }
+export const putClubUser = async (data: Partial<ClubUsers>, id: string) => {
+    const {result} = await usePut(`/club-users/${id}`, data)
+    return result
+}

@@ -44,6 +44,7 @@ const userId = useCookie('userId');
 const {data: users, status, refresh} = useAsyncData('get-users-members', () => getUsers({
   'id:not':userId.value,
   'with-profile': true,
+  'with-comments': true,
   'sort-createdAt': 'desc',
   'profile:is:or.firstName': search.value || undefined,
   'profile:is:or.lastName': search.value || undefined,

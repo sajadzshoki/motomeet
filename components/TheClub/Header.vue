@@ -2,7 +2,7 @@
 <template>
   <TheNuxtIcon icon-type="img" :name="club?.image||'post2.png'" class="!w-full !h-85 object-cover absolute top-0 right-0  brightness-30"/>
   <div class="z-5 relative  w-full flex items-start justify-between p-4 h-200">
-    <TheNuxtIcon name="nav-right" icon-type="svg" class="text-2xl  cursor-pointer" @click="router.back()"/>
+    <TheNuxtIcon name="nav-right" icon-type="svg" class="text-2xl  cursor-pointer" @click="navigateTo({name:'index'})"/>
     <p class="font-semibold !text-(sm center)">{{ club?.name }}</p>
     <div class="flex gap-2 items-center">
 
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="flexCol gap-4 ">
-        <p class="text-2xl font-600 flexCol items-end">{{ club?.clubUsers?.length }}<span class="text-(2.5) leading-4 font-400">نفر</span></p>
+        <p class="text-2xl font-600 flexCol items-end">{{ club?.clubUsers?.filter(i=>i.status==='ACCEPTED')?.length }}<span class="text-(2.5) leading-4 font-400">نفر</span></p>
         <p class="text-2xl font-600 flexCol items-end">{{ club?.rides?.length }}<span
             class="text-(2.5) leading-4 font-400">راید تاکنون</span></p>
       </div>

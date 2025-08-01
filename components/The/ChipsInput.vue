@@ -13,9 +13,9 @@
     />
     <div class="flex flex-wrap gap-2" v-show="selected.length">
       <p v-for="(item,index) in selected"
-         class="px-2 leading-6.5 text-(xs  nowrap) font-400 rounded-full border-(1 solid primary-600) flex gap-1 item-center">
+         class="px-2 leading-6 text-(xs  nowrap) font-400 rounded-full bg-primary-600 flex items-center gap-1 item-center">
+        <TheNuxtIcon name="close" icon-type="svg" class="text-xs mb-1px" @click="remove(index)"/>
         {{ item }}
-        <TheNuxtIcon name="close" icon-type="svg" class="text-xs" @click="remove(index)"/>
       </p>
     </div>
   </div>

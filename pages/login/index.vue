@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flexCol gap-6">
-    <TheInput :max-length="11" className="bg-secondary-800" :validation="validation" placeholder="09121234567" label="شماره تلفن"
+    <TheInput input-mode="numeric" :max-length="11" className="bg-secondary-800" :validation="validation" placeholder="09121234567" label="شماره تلفن"
               v-model="phoneNumber" @keydown.enter="submit"/>
     <TheButton label="ورود" class="w-full" @click="submit" :loading="loading" :disable="!phoneNumber"/>
   </div>

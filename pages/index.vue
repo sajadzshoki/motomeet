@@ -1,12 +1,13 @@
 <template>
   <div class="flexCol gap-5" v-if="ride">
     <TheHomeActiveRide/>
-    <TheCardsHeader title="راید های نزدیک شما" link="ride"/>
+
+    <TheCardsHeader title="کلاب‌های پرطرفدار"/>
     <div  class="flex gap-3 overflow-x-auto -mx-4 px-4">
-      <TheRideCard v-for="item in images" :item="item"/>
+      <TheClubCard v-for="club in clubs" :club="club" :status="status"/>
     </div>
     <TheHomeJoinRide/>
-    <TheCardsHeader title="رایدهای دنبال شوندگان شما"/>
+    <TheCardsHeader title="راید های نزدیک شما" link="ride"/>
     <div  class="flex gap-3 overflow-x-auto -mx-4 px-4">
       <TheRideCard v-for="item in images" :item="item"/>
     </div>
@@ -17,7 +18,11 @@
 
 <script setup lang="ts">
 const ride = ref(true)
-
+const {data: clubs,refresh,status} =  useAsyncData('get-clubs-index', () => getClubs( {
+  'with-comments': true,
+  'with-city': true,
+  'with-rides': true,
+}))
 const images=[
   'ride1.png',
   'ride2.png',

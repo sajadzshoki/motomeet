@@ -74,6 +74,7 @@ export interface User {
     Like?: Like[];
     followers?: Follow[];
     followings?: Follow[];
+    Ride?: Ride[];
 }
 export interface AccessLevel {
     id?: string;
@@ -236,6 +237,8 @@ export interface Ride {
     hour: string;
     maxRiders?: string | null;
     description?: string | null;
+    user?: User | null;
+    userId?: string | null;
     riders?: RideRiders[];
     club?: Club;
     createdAt?: string | null;

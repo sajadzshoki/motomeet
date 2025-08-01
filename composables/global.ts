@@ -1,7 +1,32 @@
 import type {User} from "~/types/models";
+import Moment from 'jalali-moment'
+export const moment = Moment
+export const isoToNormal = (time: string) => {
+    return moment(time).locale('fa').format('jDD jMMMM | h A').replace('ب.ظ', 'عصر').replace('ق.ظ', 'صبح')
+}
+export const isoToMonth = (time: string) => {
+    return moment(time).locale('fa').format('jMMMM')
+}
+export const isoToDateTime = (time: string) => {
+    return moment(time).locale('fa').format('dd, DD MMM YYYY HH:mm')
+}
+export const isoToDate = (time: string) => {
+    return moment(time).locale('fa').format('DD MMM  YYYY')
+}
+export const isoToTime = (time: string) => {
+    return moment(time).locale('fa').format('HH:mm')
+}
+export const isoToWeekDay = (time: string) => {
+    return moment(time).locale('fa').format('ddd')
+}
+export const isoToWeekDayFirstLetter = (time: string) => {
+    return moment(time).locale('fa').format('dd')
+}
 
+export const isoToStandard = (time: string) => {
+    return moment(time).format('MMM DD,YYYY hh:mmA')
+}
 let globalFetched = false
-
 export const useUser = async () => {
     const userId = useCookie('userId')
     const user = useLocalStorage<User | null>('user', null)

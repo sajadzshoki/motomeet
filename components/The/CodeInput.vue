@@ -7,6 +7,7 @@
       ref="otpInput"
       input-classes="otp-input"
       separator=""
+      inputmode="numeric"
       inputType="letter-numeric"
       :num-inputs="inpNumber||4"
       :should-auto-focus="true"
