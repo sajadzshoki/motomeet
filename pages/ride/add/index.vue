@@ -2,26 +2,41 @@
   <div class="flexCol gap-4">
     <div class="flex justify-between bg-secondary-500 rounded-lg p-3 items-center gap-4"
          :class="validation && !rideForm.title && 'border-(1 solid red-500)' ">
-      <TheInput placeholder="نام راید"
+      <TheInput placeholder="اسم راید *"
                 class-name="!px-0"
                 class="w-full"
                 focus-class-name=""
                 v-model="rideForm.title"
       />
-      <TheUploadFile v-model="rideForm.image" :class="validation && !rideForm.image && 'border-(2 solid red-500) rounded-full'"/>
+      <TheUploadFile v-model="rideForm.image"
+                     :class="validation && !rideForm.image && 'border-(2 solid red-500) rounded-full'"/>
     </div>
     <TheChipsInput prependIcon=""
                    v-model="rideForm.rules"
                    placeholder="قوانین راید"/>
+
     <TheInput input-mode="numeric"
               placeholder="حداقل حجم موتور"
               v-model="rideForm.minEngine"
               prepend-icon=""
     />
-  <TheIRDatePicker type="date" v-model="rideForm.date"/>
-    <TheHourSetter/>
+    <TheIRDatePicker type="date" placeholder="تاریخ" v-model="rideForm.date"
+                     :validation="validation && !rideForm.date"/>
+    <TheHourSetter v-model="rideForm.hour" :validation="validation && !rideForm.hour"/>
+    <TheInput input-mode="numeric"
+              placeholder="حداکثر تعداد اعضا"
+              v-model="rideForm.maxRiders"
+    />
+    <TheLoadingPage v-if="status=='pending'"/>
+    <TheDropdown v-else :data="clubs" label="name" title="کلاب مرتبط" v-model="rideForm.clubId" :validation="validation && !rideForm.clubId"/>
 
+    <TheInput input-type="textarea"
+              placeholder="توضیحات راید"
+              v-model="rideForm.description"
+    />
   </div>
+  <TheFab :icon="loading?'loading':'nav-right'" class-name="!bottom-10" @click="submitRide"/>
+<!--  <TheLog :data="rideForm"/>-->
 </template>
 
 <script setup lang="ts">
@@ -45,6 +60,9 @@ const rideForm = useLocalStorage('rideForm', {
   toAddressId: ''
 })
 // ------------------------------------------------
+const {data: clubs,status} =  useAsyncData('get-clubs-ride-add', () => getClubs( {
+  'userId:eq':userId.value
+}))
 // -------------------------------------------
 const {$toast} = useNuxtApp()
 const validation = ref(false)
@@ -52,36 +70,17 @@ const loading = ref(false)
 
 const route = useRoute()
 
-const submitClub = async () => {
+const submitRide = async () => {
   if (loading.value) return
   loading.value = true
-  const form = clubForm.value
-  if (!form.name || !form.city) {
+  const form = rideForm.value
+  if (!form.title || !form.image || !form.date || !form.hour || !form.clubId) {
     $toast.error('اطلاعات را کامل وارد کنید')
     validation.value = true
     loading.value = false
     return
   }
-  try {
-    const result = await postClub({
-      userId: userId.value,
-      name: form.name,
-      logo: form.logo || 'https://s3.vistatest.site/files/',
-      cityId: form.city.id,
-      // images:form.images || [],
-    })
-    if (result) {
-      $toast.success('کلاب با موفقیت ساخته شد')
-      setTimeout(() =>
-          navigateTo({name: 'club-add-members', query: {clubId: result.id}}), 1000
-      )
-    }
-  } catch (error) {
-    console.log('login error', error)
-    $toast.error('بروز خطای غیرمنتظره ، لطفا دوباره تلاش کنید')
-    loading.value = false
-    validation.value = false
-  }
+  navigateTo({name:'ride-add-map'})
 
 
   loading.value = false

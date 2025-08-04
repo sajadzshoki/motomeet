@@ -5,7 +5,7 @@
       <div class="flex flex-col relative !bg-secondary-500 rounded-lg h-12"
            :class="[focused ? '!border-(primary-500 1 solid) ' :
             focused ? 'border-primary-600 ' :
-             'bg-transparent border-gray-300',validation&&'border-red']">
+             'bg-transparent border-gray-300',validation&&'border-(1 solid red-500)']">
         <div class="flex items-center p-3 rounded-full cursor-pointer" @click="click" v-on-click-outside="()=> focused = false">
           <p class="text-(xs) font-400 grow" :class="value?'':'text-gray-500'">
             {{ type==='time'? value?.replace('.',':'): (value ? moment(value).locale(locale).format('YYYY/MM/DD') : focused ? '' : '')
@@ -28,6 +28,7 @@
             :show="show"
             :max="withMax&&getMaximum"
             color="#4B4CB8"
+
             :type="type"
             v-model="value"
             compact-time

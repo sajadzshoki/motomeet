@@ -1,6 +1,6 @@
 <template>
   <TheSkeletonLoader :loading="status==='pending'" class="relative">
-    <NuxtLink class="!w-30 !h-30 !relative rounded-3xl overflow-hidden justify-end flexCol  relative p-3 children:(z-1)" :to="{name: 'club-id',params:{id:club.id}}">
+    <NuxtLink class="!min-w-30 !min-h-30 !relative rounded-3xl overflow-hidden justify-end flexCol  relative p-3 children:(z-1)" :to="{name: 'club-id',params:{id:club.id}}">
       <div class="!absolute inset-0 top-5 right-0 w-full h-full bg-gradient-to-t  from-black to-transparent  "></div>
       <TheNuxtIcon :name='club.logo' icon-type="img" class="!absolute !z-0  !w-full !h-full object-cover top-0 right-0 "/>
       <div class="flex gap-2 items-center">

@@ -10,9 +10,9 @@
               prepend-icon="profile-helmet"
     />
     <TheChipsInput prependIcon="Transport" v-model="profileForm.motors"
-                   placeholder="مدل موتور های خود را وارد کنید"
+                   placeholder="مدل موتورهات چیه"
     />
-    <TheInput placeholder="ایمیل خود را وارد کنید" v-model="profileForm.email"
+    <TheInput placeholder="ایمیلت" v-model="profileForm.email"
               prepend-icon="email"
     />
     <TheInput input-type="textarea" v-model="profileForm.bio"
@@ -39,6 +39,7 @@ const {user} = await useUser()
 const profileForm = ref({
   firstName:'',
   lastName:'',
+  nickName:'',
   avatar:'',
   motors:[],
   email:'',
@@ -46,7 +47,7 @@ const profileForm = ref({
 })
 onMounted(()=>{
   profileForm.value = _cloneDeep(user.value.profile as Profile);
-  profileForm.value.email = user.value.email
+
 
 })
 const submitProfile = async () => {
@@ -59,11 +60,11 @@ const submitProfile = async () => {
   //   return
   // }
   try {
-    const result = await putProfile(_omit(profileForm.value,'email'),user.value.profile.id)
+    const result = await putProfile((profileForm.value),user.value?.profile?.id)
     if (result) {
-      if(profileForm.value.email){
-        await putUser({email: profileForm.value.email}, userId.value)
-      }
+      // if(profileForm.value.email){
+      //   await putUser({email: profileForm.value.email}, userId.value)
+      // }
       $toast.success('اطلاعات شما با موفقیت تغییر به روز شد')
       setTimeout(() =>
           navigateTo({name: 'profile'}), 1000

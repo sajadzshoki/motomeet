@@ -6,7 +6,7 @@
         <TheNuxtIcon icon-type="img" :name="item?.user?.profile?.avatar || 'noProfile.png'"
                      class="!w-15 !h-15 rounded-full object-cover"/>
         <div class="flexCol ">
-          <p class="text-(xs) leading-6">{{ item?.user?.profile?.firstName + ' ' + item?.user?.profile?.lastName }}</p>
+          <p class="text-(xs) leading-6">{{item?.user?.profile?.nickName || ( item?.user?.profile?.firstName + ' ' + item?.user?.profile?.lastName) }}</p>
 
           <div
               class="flex gap-1 items-center px-1.5 bg-secondary-500 border-(1 solid secondary-300) w-fit rounded-full">
@@ -50,21 +50,23 @@ const {$toast} = useNuxtApp()
 const accept = async (item: any) => {
   if (loading.value) return
   loading.value = true
+  const name = ref(item?.user?.profile?.nickName ||(item.user.profile.firstName + ' ' + item.user.profile.lastName))
   const result = await putClubUser({status: 'ACCEPTED'}, item.id)
   if (result) {
     refresh()
     $toast.success(`
-    ${item.user.profile.firstName + ' ' + item.user.profile.lastName}به کلابت اضافه شد `)
+    ${name.value}به کلابت اضافه شد `)
   }
   loading.value = false
 }
 const reject = async (item: any) => {
   if (loading.value) return
   loading.value = true
+  const name = ref(item?.user?.profile?.nickName ||(item.user.profile.firstName + ' ' + item.user.profile.lastName))
   const result = await putClubUser({status: 'REJECTED'}, item.id)
   if (result) {
     refresh()
-    $toast.success(`   درخواست ${item.user.profile.firstName + ' ' + item.user.profile.lastName} رد شد `)
+    $toast.success(`   درخواست ${name.value} رد شد `)
   }
   loading.value = false
 }

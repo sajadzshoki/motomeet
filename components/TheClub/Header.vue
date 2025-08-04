@@ -1,13 +1,17 @@
 
 <template>
-  <TheNuxtIcon icon-type="img" :name="club?.image||'post2.png'" class="!w-full !h-85 object-cover absolute top-0 right-0  brightness-30"/>
-  <div class="z-5 relative  w-full flex items-start justify-between p-4 h-200">
-    <TheNuxtIcon name="nav-right" icon-type="svg" class="text-2xl  cursor-pointer" @click="navigateTo({name:'index'})"/>
-    <p class="font-semibold !text-(sm center)">{{ club?.name }}</p>
-    <div class="flex gap-2 items-center">
+  <TheNuxtIcon icon-type="img" :name="club?.logo||'post2.png'" class="!w-full !h-85 object-cover absolute top-0 right-0  brightness-30"/>
+  <div class="z-5 relative  w-full flex items-start justify-between p-4 h-240">
+    <TheNuxtIcon name="nav-right" icon-type="svg" class="text-2xl  cursor-pointer" @click="route.query.made?navigateTo({name:'index'}):router.back()"/>
+    <p class="font-semibold !text-(sm center) mt-1">{{ club?.name }}</p>
+    <div class="flex gap-4 items-center mt-1">
 
-      <NuxtLink ><TheNuxtIcon icon-type="svg" name="edit" class="text-sm "/></NuxtLink>
-    <NuxtLink ><TheNuxtIcon icon-type="svg" name="add" class="text-xs "/></NuxtLink>
+    <NuxtLink >
+      <TheNuxtIcon icon-type="svg" name="add" class="text-md "/>
+    </NuxtLink>
+      <NuxtLink :to="{name:'club-add',query:{id:club?.id}}" >
+        <TheNuxtIcon icon-type="svg" name="edit2" class="text-md "/>
+      </NuxtLink>
     </div>
     <div class="flex items-end w-full  justify-between absolute bottom-4 right-0 px-4  ">
 
@@ -38,4 +42,5 @@
 import type {Club} from "~/types/models";
 defineProps<{club:Club}>()
 const router = useRouter()
+const route = useRoute()
 </script>

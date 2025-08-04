@@ -17,7 +17,7 @@
         <div class="flex gap-1 items-center">
           <p class="text-xs font-600">
 
-            {{ (user?.profile?.firstName || 'کاربر') + ' ' + (user?.profile?.lastName || 'موتومیت') }}
+            {{ user?.profile?.nickName ||((user?.profile?.firstName || 'کاربر') + ' ' + (user?.profile?.lastName || 'موتومیت')) }}
           </p>
           <div class="flex gap-1 items-center px-1.5 bg-secondary-400 bg-opacity-80 w-fit rounded-full">
             <TheNuxtIcon icon-type="svg" name="star" class=" text-xs "/>
@@ -64,24 +64,41 @@ const addUser = (userId: string) => {
 const {$toast} = useNuxtApp()
 const validation = ref(false)
 const loading = ref(false)
-
+const clubForm = useLocalStorage('clubForm',{
+  name:'',
+  city:'',
+  logo:'',
+  type:false,
+  images:[],
+})
 const route = useRoute()
-const clubForm = useLocalStorage('clubForm',{})
+
 const submitClub = async () => {
   if (loading.value) return
   loading.value = true
+  const form = clubForm.value
   try {
+    const resultClub = await postClub({
+          userId: userId.value,
+          name:form.name,
+          logo:form.logo  ,
+          cityId:form.city.id,
+          images:form.images || [],
+        })
+    if(resultClub){
+
     const result = await Promise.all (selected.value.map(id =>  postClubUser({
       userId: id,
-      clubId: route.query.clubId,
+      clubId: resultClub.id,
       status: 'ACCEPTED'
     })))
     if (result) {
-      $toast.success('دوستات به کلابت اضافه شدن')
+      $toast.success('کلاب با موفقیت ساخته شد')
       clubForm.value={}
       setTimeout(() =>
-          navigateTo({name:'club-id',params:{id:route.query.clubId}}), 1000
+          navigateTo({name:'club-id',params:{id:resultClub.id},query:{made:true}}), 1000
       )
+    }
     }
   } catch (error) {
     console.log('login error', error)

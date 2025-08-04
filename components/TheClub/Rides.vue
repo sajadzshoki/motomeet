@@ -12,7 +12,7 @@
     <div class="rounded-full bg-(secondary-500 ) self-end px-2 w-fit">
       <p class="text-(2.5) leading-5 flex gap-1">
         <TheNuxtIcon icon-type="svg" name="circle-outline" class=""/>
-        {{ ride.user?.profile?.firstName + ' ' + ride.user?.profile?.lastName  }} یک سفر تنظیم کرد
+        {{ ride?.user?.profile?.nickName || (ride.user?.profile?.firstName + ' ' + ride.user?.profile?.lastName)  }} یک سفر تنظیم کرد
       </p>
     </div>
 
@@ -35,6 +35,7 @@
     </div>
     </div>
   </NuxtLink>
+
 </template>
 
 <script setup lang="ts">

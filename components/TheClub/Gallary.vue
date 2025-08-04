@@ -1,10 +1,10 @@
 
 <template>
-  <div class="grid grid-cols-3 gap-0.5 auto-rows-[170px] ">
+  <div class="grid grid-cols-3 gap-0.5 auto-rows-[110px] ">
     <div
         v-for="(img, index) in club?.images"
         :key="index"
-        :class="getGridClass(index)"
+
         class="overflow-hidden"
     >
       <TheNuxtIcon :name="img" class="h-full w-full object-cover"/>

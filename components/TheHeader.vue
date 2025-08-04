@@ -11,7 +11,7 @@
     </div>
     <!--    name and location-->
     <div class="flexCol gap-1.5 ">
-      <p class="text-sm font-semibold leading-6.5">{{ user?.profile?.firstName }} 👋</p>
+      <p class="text-sm font-semibold leading-6.5">{{user?.profile?.nickName || user?.profile?.firstName }} 👋</p>
       <div class="flex items-center gap-1 bg-primary-700 px-1 rounded-full">
         <TheNuxtIcon icon-type="svg" name="locationFill" class="text-xs"/>
         <p class="text-xs font-medium">{{ truncateText(' تهران، شهرک غرب کوچه بیستم پلاک 2', 20) }}</p>

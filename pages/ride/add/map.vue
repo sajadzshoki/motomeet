@@ -1,11 +1,16 @@
-<script setup lang="ts">
 
-</script>
 
 <template>
 
+<div class=" h-vh -m-4">
+  <TheMap  class=""/>
+</div>
+
 </template>
 
-<style scoped>
-
-</style>
+<script setup lang="ts">
+definePageMeta({layout:'backward'})
+const backward = useState('backwardTitle')
+backward.value = 'انتخاب مبدا'
+// -------------------------------------------
+</script>

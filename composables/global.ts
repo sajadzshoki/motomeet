@@ -26,14 +26,14 @@ export const isoToWeekDayFirstLetter = (time: string) => {
 export const isoToStandard = (time: string) => {
     return moment(time).format('MMM DD,YYYY hh:mmA')
 }
-let globalFetched = false
+// let globalFetched = false
 export const useUser = async () => {
     const userId = useCookie('userId')
     const user = useLocalStorage<User | null>('user', null)
     const loading = ref(false)
 
-    if (userId.value && !globalFetched) {
-        globalFetched = true
+    if (userId.value  ) {
+        // globalFetched = true
         loading.value = true
         const { result } = await useGet<User>(`/user/${userId.value}`, {
             params: {

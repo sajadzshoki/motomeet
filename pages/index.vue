@@ -2,7 +2,7 @@
   <div class="flexCol gap-5" v-if="ride">
     <TheHomeActiveRide/>
 
-    <TheCardsHeader title="کلاب‌های پرطرفدار"/>
+    <TheCardsHeader title="کلاب‌های پرطرفدار" link="club"/>
     <div  class="flex gap-3 overflow-x-auto -mx-4 px-4">
       <TheClubCard v-for="club in clubs" :club="club" :status="status"/>
     </div>

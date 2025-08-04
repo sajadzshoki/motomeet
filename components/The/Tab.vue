@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full bg-secondary-800 rounded-xl p-1">
+  <div class="flex w-full bg-secondary-800 rounded-2xl p-1">
     <label
         v-for="item in items"
         :key="item.value"
