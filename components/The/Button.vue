@@ -5,7 +5,7 @@
           :class="[
           disable?'bg-primary-800 border-transparent':fill?'bg-primary-700 border-transparent ':'bg-transparent text-primary-200 border-(1 solid primary-200) ',
           disable?'opacity-40 cursor-not-allowed ':'',
-          mini?' px-4 min-w-15':'h-11 px-3 min-w-20',
+          mini?' px-4 !min-w-15':'h-11 px-3 min-w-20',
           cancel? !fill && 'border-red-500 text-red-500':'',
           disable && cancel && '!border-(gray-50 1 solid) !text-gray-100 !bg-transparent']"
           :style="{

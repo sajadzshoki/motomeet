@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center  bg-none z-2  py-2 px-8  fixed bottom-0 w-full">
+  <div class="flex items-center  bg-none z-2  py-2 px-8  fixed bottom-3 w-full">
   <div class="bg-black bg-opacity-60   backdrop-blur-12   rounded-full w-full flex justify-evenly ">
     <div @click="handleSelectItem(item.link,item.param,index)" v-for="(item,index) in Buttons"
          class=" cursor-pointer py-5   duration-300 flexCol items-center justify-baseline gap-1 "
@@ -36,36 +36,36 @@ interface ButtonItem {
 const isActive = (item: ButtonItem) => {
   return selectedItem.value === item.label || route.path.includes(item.link) || route.name === item.link
 }
-
+const userId = useCookie('userId')
 const Buttons = ref([
   {
     label: 'خانه',
     icon: 'home',
     iconFill: 'homeFill',
     link: 'index',
-    dis:"6.9rem"
+
   },
   {
     label: 'موتو مدیا',
     icon: 'social',
     iconFill: 'socialFill',
     link: 'social',
-    dis:"2rem"
+
   },
   {
     label: 'چت',
     icon: 'chat',
     iconFill: 'chatFill',
     link: 'chat',
-    dis:"-3rem"
+
   },
   {
     label: 'من',
     icon: 'profile-helmet',
     iconFill: 'profile-helmet-fill',
     link: 'profile-id',
-    param: {id:1},
-    dis:"-6.95rem"
+    param: {id:userId.value},
+
   },
 ])
 </script>

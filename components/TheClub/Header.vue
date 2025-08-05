@@ -25,7 +25,8 @@
               <span class="text-(2.5) ">{{getCommentsAvg(club?.comments)}}</span>
             </div>
           </div>
-          <p class="text-(xs) leading-6">{{club?.user?.profile?.nickName ||  (club?.user?.profile?.firstName + ' ' + club?.user?.profile?.lastName) }} (تیم لیدر)</p>
+          <p class="text-(xs) leading-6">
+            {{club?.user?.profile?.nickName ||  (club?.user?.profile?.firstName + ' ' + club?.user?.profile?.lastName) }} (تیم لیدر)</p>
           <TheUsersAvatar :mini="true" :items="club?.clubUsers?.map(i=>i.user?.profile)"/>
         </div>
       </div>
