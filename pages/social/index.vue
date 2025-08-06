@@ -14,7 +14,7 @@
 
     <TheNuxtIcon name="loading" icon-type="svg" v-if="loading" class="text-(4xl) my-3 "/>
     </div>
-<TheFab/>
+<TheFab @click="navigateTo({name:'social-add'})"/>
   </div>
 </template>
 

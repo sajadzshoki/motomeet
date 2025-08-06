@@ -29,12 +29,15 @@
       </div>
       <TheButton v-if="user.id !==userId" :label="isFollowed?'دنبال میکنید':'دنبال کردن'"
                  :mini="true" class="px-4 " @click="follow" :loading="loading" :class="{'!bg-blue-600':isFollowed}"/>
-      <TheButton v-else label="افزودن پست" :mini="true" class="px-4 "/>
+      <NuxtLink :to="{name:'social-add'}" v-else>
+
+      <TheButton  label="افزودن پست" :mini="true" class="px-4 "/>
+      </NuxtLink>
     </div>
     <p class="text-(2.5 gray-400) font-500 leading-5.5">{{ user?.profile?.bio }}</p>
 
-    <div class="flex justify-evenly -mx-6">
-      <div class="flexCol items-center  border-l-(1 solid secondary-400 ) last:border-none px-6  "
+    <div class="flex justify-center -mx-6">
+      <div class="flexCol items-center   border-l-(1 solid secondary-400 ) last:border-none px-4  "
            v-for="item in statuses">
         <p>{{ item.count }}</p>
         <span class="text-(2.5 gray-400) font-500 leading-5.5">{{ item.label }}</span>
@@ -42,7 +45,7 @@
       </div>
     </div>
   </div>
-  <TheLog :data="user.followings?.find(i => i.toId === route.params.id)?.id"/>
+<!--  <TheLog :data="user.followings?.find(i => i.toId === route.params.id)?.id"/>-->
 </template>
 
 <script setup lang="ts">
@@ -58,7 +61,7 @@ const statuses = computed(()=>[
     label: 'تجربه در راید',
     count: props.user?.RideRiders?.length
   }, {
-    label: 'دنبال میکنه',
+    label: ' نفرو دنبال میکنه',
     count: props.user?.followers?.length
   }, {
     label: 'دنبالش میکنن',

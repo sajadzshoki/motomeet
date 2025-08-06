@@ -1,4 +1,4 @@
-import type {City, Club, ClubUsers, Follow, Profile, User} from "~/types/models";
+import type {City, Club, ClubUsers, Follow, Post, Profile, User} from "~/types/models";
 
 //gets ------------------------------------------------------------------------------------------------
 export const getUsers = async (params:{})=>{
@@ -40,6 +40,10 @@ export const postClubUser = async (data: Partial<ClubUsers>) => {
 }
 export const postFollow = async (data: Partial<Follow>) => {
     const {result} = await usePost(`/follow`, data)
+    return result
+}
+export const postPost = async (data: Partial<Post>) => {
+    const {result} = await usePost(`/post`, data)
     return result
 }
 

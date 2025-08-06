@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   multi: true,
   mini: false,
-  max: 6,
+  max: 10,
   label: 'بارگذاری تصویر '
 })
 
