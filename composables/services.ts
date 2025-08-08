@@ -1,4 +1,4 @@
-import type {City, Club, ClubUsers, Follow, Post, Profile, User} from "~/types/models";
+import type {City, Club, ClubUsers, Follow, Post, Profile, User, Address, Chat, UserOnChat} from "~/types/models";
 
 //gets ------------------------------------------------------------------------------------------------
 export const getUsers = async (params:{})=>{
@@ -25,6 +25,18 @@ export const getClub = async (id:string,params:{})=>{
     const {result}= await useGet<Club>(`/club/${id}`, {params});
     return result
 }
+export const getAddresses = async (params:{})=>{
+    const {result}= await useGet<Address[]>(`/address`, {params});
+    return result
+}
+export const getPosts = async (params:{})=>{
+    const {result}= await useGet<Post[]>(`/post`, {params});
+    return result
+}
+export const getChats = async (params:{})=>{
+    const {result}= await useGet<Chat[]>(`/chat`, {params});
+    return result
+}
 //posts ------------------------------------------------------------------------------------------------
 export const postProfile = async (data: Partial<Profile>) => {
     const {result} = await usePost(`/profile`, data)
@@ -44,6 +56,14 @@ export const postFollow = async (data: Partial<Follow>) => {
 }
 export const postPost = async (data: Partial<Post>) => {
     const {result} = await usePost(`/post`, data)
+    return result
+}
+export const postChat = async (data: Partial<Chat>) => {
+    const {result} = await usePost(`/chat`, data)
+    return result
+}
+export const postChatUsers = async (data: Partial<UserOnChat>) => {
+    const {result} = await usePost(`/user-on-chat`, data)
     return result
 }
 

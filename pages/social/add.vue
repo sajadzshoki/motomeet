@@ -36,7 +36,6 @@ const step = ref(0)
 backward.value =  computed(()=>step.value === 0 ?'انتخاب تصویر':'کپشن')
 const userId = useCookie('userId')
 const postForm = useLocalStorage('postForm', {
-  userId: userId.value,
   images: [],
   caption:''
 })
@@ -53,7 +52,7 @@ const submitPost = async () => {
   loading.value = true
 
   try {
-    const result = await postPost(postForm.value)
+    const result = await postPost({...postForm.value,  userId: userId.value,})
     if (result) {
       $toast.success('پستت منتشر شد')
       setTimeout(() =>

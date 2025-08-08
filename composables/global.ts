@@ -102,6 +102,26 @@ export const getCommentsAvg = (comments: any[]) => {
     const average = comments?.length > 0 ? sum / scores.length : 0
     return average.toFixed(1)
 }
+export const direction = async (origin: address, destination: address) => {
+    const type: 'motorcycle' | 'car' = 'motorcycle'
+    const result = await $fetch(`https://api.neshan.org/v4/direction`,
+        {
+            method: 'GET',
+            headers: {
+                'Api-Key': NESHAN_API_KEY,
+            },
+            params: {
+                type: type,
+                origin: [origin[1], origin[0]].join(','),
+                destination: [destination[1], destination[0]].join(','),
+                // avoidTrafficZone:false,
+                // avoidOddEvenZone:false,
+                // alternative:false
+            }
+        })
+    console.log(result)
+    return result?.routes?.[0]?.overview_polyline?.points
+}
 
 export const isValidEmail = (email:string) => {
     const regex = /^\S+@\S+\.\S+$/;
@@ -109,4 +129,27 @@ export const isValidEmail = (email:string) => {
 }
 export const truncateText=(text:string , maxLength:number)=>{
     return text?.length > maxLength ? text.slice(0,maxLength) + '...' : text;
+}
+export let NESHAN_API_KEY ='service.2ef9bc7ffd1f4c7eaba538fec1ae0c8d'
+export let NESHAN_WEB_KEY ='web.6f82249a539940388cd4297a843990a2'
+import type {Coordinate} from "ol/coordinate";
+export const formattedAddress = async ([lng, lat]: [number, number]) => {
+    const result = await $fetch(`https://api.neshan.org/v5/reverse?lat=${lat}&lng=${lng}`,
+        {
+            method: 'GET',
+            headers: {
+                'Api-Key': 'service.2ef9bc7ffd1f4c7eaba538fec1ae0c8d',
+            },
+        })
+    return result?.formatted_address
+}
+
+export const geoCodingAddress = async (address: string, coords: Coordinate) => {
+    return await $fetch(`https://api.neshan.org/v1/search?term=${address}&lat=${coords[1]}&lng=${coords[0]}`,
+        {
+            method: 'GET',
+            headers: {
+                'Api-Key': NESHAN_API_KEY,
+            },
+        })
 }

@@ -8,7 +8,7 @@
         id="1"
         class="absolute w-32   opacity-0 h-16 cursor-pointer w-full"
         @change="upload($event.target)"
-        accept="image/*"
+        accept="image/* , video/*"
     />
 
     <div class="text-center text-primary-750 text-sm flex flex-col justify-center items-center gap-2">

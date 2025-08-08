@@ -75,6 +75,7 @@ export interface User {
     followers?: Follow[];
     followings?: Follow[];
     Ride?: Ride[];
+    Address?: Address[];
 }
 export interface AccessLevel {
     id?: string;
@@ -193,9 +194,9 @@ export interface Profile {
     firstName: string;
     lastName: string;
     nickName?: string | null;
+    email?: string | null;
     birthday?: string | null;
     location?: Location | null;
-    address?: Address[];
     avatar?: string | null;
     motors: string[];
     motorColor?: string | null;
@@ -213,49 +214,11 @@ export interface Location {
     lng: number | {};
     exact?: boolean | null;
 }
-export interface Address {
+export interface City {
     id?: string;
-    title?: string | null;
-    info?: string | null;
-    location?: Location | null;
-    createdAt?: string | null;
-    updatedAt?: string | null;
-    rideFrom?: Ride[];
-    rideTo?: Ride[];
-    Profile?: Profile | null;
-    profileId?: string | null;
-}
-export interface Ride {
-    id?: string;
-    fromAddress?: Address;
-    toAddress?: Address;
-    title?: string | null;
-    image?: string | null;
-    rules: string[];
-    minEngine?: number | {} | null;
-    date: string;
-    hour: string;
-    maxRiders?: string | null;
-    description?: string | null;
-    user?: User | null;
-    userId?: string | null;
-    riders?: RideRiders[];
-    club?: Club;
-    createdAt?: string | null;
-    updatedAt?: string | null;
-    clubId: string;
-    fromAddressId: string;
-    toAddressId: string;
-}
-export interface RideRiders {
-    id?: string;
-    user?: User;
-    ride?: Ride;
-    status?: "PENDING" | "ACCEPTED" | "REJECTED" | "SUCCESS" | "FAILED";
-    createdAt?: string | null;
-    updatedAt?: string | null;
-    rideId: string;
-    userId: string;
+    name: string;
+    clubs?: Club[];
+    profiles?: Profile[];
 }
 export interface Club {
     id?: string;
@@ -312,12 +275,6 @@ export interface Like {
     userId: string;
     postId: string;
 }
-export interface City {
-    id?: string;
-    name: string;
-    clubs?: Club[];
-    profiles?: Profile[];
-}
 export interface ClubUsers {
     id?: string;
     user?: User;
@@ -327,6 +284,52 @@ export interface ClubUsers {
     updatedAt?: string | null;
     userId: string;
     clubId: string;
+}
+export interface Ride {
+    id?: string;
+    fromAddress?: Address;
+    toAddress?: Address;
+    title?: string | null;
+    image?: string | null;
+    rules: string[];
+    minEngine?: number | {} | null;
+    date: string;
+    hour: string;
+    maxRiders?: string | null;
+    description?: string | null;
+    user?: User | null;
+    userId?: string | null;
+    riders?: RideRiders[];
+    club?: Club;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    clubId: string;
+    fromAddressId: string;
+    toAddressId: string;
+}
+export interface Address {
+    id?: string;
+    user?: User;
+    description: string;
+    detail: string;
+    title: string;
+    location?: Location | null;
+    isActive?: boolean | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    userId: string;
+    rideFrom?: Ride[];
+    rideTo?: Ride[];
+}
+export interface RideRiders {
+    id?: string;
+    user?: User;
+    ride?: Ride;
+    status?: "PENDING" | "ACCEPTED" | "REJECTED" | "SUCCESS" | "FAILED";
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    rideId: string;
+    userId: string;
 }
 export interface Chat {
     id?: string;
