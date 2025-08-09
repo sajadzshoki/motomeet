@@ -1,4 +1,16 @@
-import type {City, Club, ClubUsers, Follow, Post, Profile, User, Address, Chat, UserOnChat} from "~/types/models";
+import type {
+    City,
+    Club,
+    ClubUsers,
+    Follow,
+    Post,
+    Profile,
+    User,
+    Address,
+    Chat,
+    UserOnChat,
+    Message
+} from "~/types/models";
 
 //gets ------------------------------------------------------------------------------------------------
 export const getUsers = async (params:{})=>{
@@ -37,6 +49,14 @@ export const getChats = async (params:{})=>{
     const {result}= await useGet<Chat[]>(`/chat`, {params});
     return result
 }
+export const getChat = async (id:string,params:{})=>{
+    const {result}= await useGet<Chat>(`/chat/${id}`, {params});
+    return result
+}
+export const getMessages = async (params:{})=>{
+    const {result}= await useGet<Message[]>(`/message`, {params});
+    return result
+}
 //posts ------------------------------------------------------------------------------------------------
 export const postProfile = async (data: Partial<Profile>) => {
     const {result} = await usePost(`/profile`, data)
@@ -64,6 +84,10 @@ export const postChat = async (data: Partial<Chat>) => {
 }
 export const postChatUsers = async (data: Partial<UserOnChat>) => {
     const {result} = await usePost(`/user-on-chat`, data)
+    return result
+}
+export const postMessages = async (data: Partial<Message>) => {
+    const {result} = await usePost(`/message`, data)
     return result
 }
 

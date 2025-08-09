@@ -47,7 +47,7 @@
     </div>
     <TheButton label="چت " :mini="true" class="py-1 !bg-blue-800" @click="handleChat" :loading="loadingChat"/>
   </div>
-  <!--  <TheLog :data="user.followings?.find(i => i.toId === route.params.id)?.id"/>-->
+  <TheLog :data="chat"/>
 </template>
 
 <script setup lang="ts">
@@ -70,11 +70,13 @@ const statuses = computed(() => [
     count: props.user?.followings?.length
   },
 ])
+
 const {$toast} = useNuxtApp()
 const loading = ref(false)
 const loadingChat = ref(false)
 const route = useRoute()
 const isFollowed = computed(() => props.user.followings?.some(i => i.toId === route.params.id))
+
 const follow = async () => {
   if (loading.value) return
   loading.value = true
@@ -107,33 +109,29 @@ const handleChat = async () => {
   loadingChat.value = true
   const chat = await getChats({
     'with-userOnChats': true,
-    'isPrivate:eq':true,
-    // 'userId:eq': userId.value || route.params.id,
-    // 'userOnChats:some.userId:eq': userId.value || route.params.id,
+    'isPrivate:eq': true,
+    'userId:or:eq': userId.value || route.params.id,
+    'userOnChats:some:or.userId:eq': userId.value || route.params.id,
   })
-  console.log('1')
-  const chatExist = computed(()=>
-      !!(chat?.find(i=>i.userId === userId.value) && chat?.map(i=>i.userOnChats?.find(x=>x.userId === route.params.id)) )
+  console.log(chat)
 
-     // !!(chat?.map(i => i.userOnChats?.find(setting => (setting.userId === route.params.id) || (setting.userId === userId.value)))
-     //  && chat?.find(i=>(i.userId === userId.value) || (i.userId === route.params.id) ))
+  if (!chat.length) {
+    console.log('new chat')
 
-  )
-  console.log('2',chatExist.value)
-  if (!chatExist.value) {
-  console.log('3')
-    const result = await postChat({status: 'ACCEPTED', userId: userId.value,isPrivate:true})
-    if (result) {
-      const resultUserOnChats = await postChatUsers({chatId: result.id, userId: route.params.id})
-      if (resultUserOnChats) {
-      navigateTo({name:'chat-id',params:{id:result.id}})
-      }
-    }
+    const result = await postChat({status: 'ACCEPTED', userId: userId.value, isPrivate: true})
+    if (!result) return
+
+    const resultUserOnChatsMe = await postChatUsers({chatId: result.id, userId: userId.value})
+    if (!resultUserOnChatsMe) return
+
+    const resultUserOnChats = await postChatUsers({chatId: result.id, userId: route.params.id})
+    if (!resultUserOnChats) return
+    return navigateTo({ name: 'chat-id', params: { id: result.id } })
   }
-  else{
-  console.log('4')
-    navigateTo({name:'chat-id',params:{id:chat[0].id}})
-  }
+
+  console.log('existed chat')
+  navigateTo({ name: 'chat-id', params: { id: chat[0].id } })
+
   loadingChat.value = false
 }
 </script>

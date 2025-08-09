@@ -1,4 +1,5 @@
 import type {User} from "~/types/models";
+import {io} from "socket.io-client"
 import Moment from 'jalali-moment'
 export const moment = Moment
 export const isoToNormal = (time: string) => {
@@ -127,6 +128,50 @@ export const isValidEmail = (email:string) => {
     const regex = /^\S+@\S+\.\S+$/;
     return regex.test(email);
 }
+export const useSocketIo = () => {
+    const socket = io(BASE_URL, {
+        extraHeaders: {
+            authorization: useCookie('token').value || '',
+            'app-code': APP_CODE
+        },
+        autoConnect: false
+    });
+    onBeforeUnmount(() => {
+        socket.disconnect()
+    })
+    return socket
+}
+export const watchSocket = (socket, joinObject: SocketJoinObject, dataHandler, loading = ref(false), initHandler = async () => {
+}) => {
+    console.log(`watch on => ${joinObject.model}.${joinObject.coll}: ${joinObject.value}`)
+    socket.on('connect', async () => {
+        await initHandler?.()
+        console.log('connect/reconnect', Date.now(), `${joinObject.model}.${joinObject.coll}: ${joinObject.value}`)
+        await socket.emitWithAck('join', joinObject)
+        loading.value = false
+    })
+    socket.on('data', dataHandler)
+    socket.connect()
+}
+
+export const lastAct = (time: string) => {
+
+    const diff = computed(() => Math.round(moment().diff(moment(time)) / 1000))
+    const day = Math.floor(diff.value / 86400)
+    const hour = Math.floor(diff.value / 3600)
+    const minute = Math.round(diff.value / 60)
+
+    if (day < 8) {
+        if (hour < 24) {
+            if (minute < 60)
+                return minute + ' ' + ('min ago')
+            else return hour + ' ' + ('h ago')
+        } else return day + ' ' + ('d ago')
+    } else return isoToDate(time)
+}
+
+
+
 export const truncateText=(text:string , maxLength:number)=>{
     return text?.length > maxLength ? text.slice(0,maxLength) + '...' : text;
 }

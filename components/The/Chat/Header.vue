@@ -3,19 +3,28 @@
 
     <TheNuxtIcon icon-type="svg" name="nav-right" class="text-xl cursor-pointer" @click="router.back()"/>
     <div class="flexCol items-center gap-1">
-      <p class="font-semibold text-md">{{ user?.name || 'name' }}</p>
+      <p class="font-semibold text-md">{{chat?.isPrivate ? otherUserName : chat?.title}}</p>
       <p class="text-(xs gray-500)">آخرین بازدید در ۱۴:۳۰</p>
     </div>
     <NuxtLink :to="{name:''}">
-      <TheNuxtIcon icon-type="img" :name="user?.profile?.avatar || 'noProfile.png'"
+      <TheNuxtIcon icon-type="img" :name="chat?.isPrivate ? otherUserImage : chat?.image"
                    class="!w-10 !h-10 rounded-full object-cover"/>
     </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
+import type {Chat} from "~/types/models";
+
 const router = useRouter()
-defineProps<{
-  user?: any
+const props = defineProps<{
+  chat: Chat
 }>()
+const userId = useCookie('userId')
+const route = useRoute()
+const otherUser = computed(()=>props.chat?.userOnChats?.find(i=>i.userId !== userId.value))
+const otherUserName = computed(()=> {
+  return (otherUser.value?.user?.profile?.nickName || (otherUser.value?.user?.profile?.firstName + ' ' + otherUser.value?.user?.profile?.lastName))
+})
+const otherUserImage = computed (()=>{return otherUser.value?.user?.profile?.avatar || 'noProfile.png'})
 </script>

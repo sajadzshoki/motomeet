@@ -1,22 +1,70 @@
 <template>
   <div class="h-full w-full h-full flexCol">
-    <TheChatHeader/>
-    <div class="flex  flex-col-reverse gap-7 p-4 bg-gray-900 flex-1 pb-18  ">
-      <div class="relative rounded-md p-2 max-w-3/4  flexCol gap-1" v-for="n in 4"
-           :class="userId ? 'bg-secondary-400 rounded-tr-none'
+    <TheChatHeader :chat="chat"/>
+    <div class="flex  flex-col justify-end gap-7 p-4 bg-gray-900 flex-1 pb-18  ">
+
+      <div class="relative rounded-md p-2 max-w-3/4  flexCol gap-1" v-for="message in chat?.messages"
+           :class="message?.userId === userId ? 'bg-secondary-400 rounded-tr-none'
            :'bg-primary-500 self-end rounded-tl-none '"
       >
-        <div v-if="userId" class="absolute  -right-1.5 -top-0.9 w-0 h-0 rotate-65 border-r-(6 solid transparent)  border-l-(6 solid transparent) border-b-(12 solid secondary-400)"></div>
-        <div v-else class="absolute -left-2 -top-0.9 w-0 h-0 -rotate-65 border-r-(6 solid transparent)  border-l-(6 solid transparent) border-b-(12 solid primary-500)"></div>
-        <p class="text-sm " :class="userId ? '':'pl-6'">سلام، چطور می تونم کمکتون کنم؟</p>
-        <small class="self-end text-xs">۱۱:۴۶</small>
+        <div v-if="message?.userId === userId" class="absolute  -right-1.5 -top-0.9 w-0 h-0 rotate-65 border-r-(6 solid transparent)
+         border-l-(6 solid transparent) border-b-(12 solid secondary-400)"></div>
+
+        <div v-else
+             class="absolute -left-2 -top-0.9 w-0 h-0 -rotate-65 border-r-(6 solid transparent)  border-l-(6 solid transparent) border-b-(12 solid primary-500)"></div>
+<!--      <TheSkeletonLoader :loading="status=='pending'">-->
+        <p class="text-sm " :class="message?.userId === userId ? '':'pl-6'">{{ message?.text }}</p>
+<!--      </TheSkeletonLoader>-->
+        <small class="self-end text-xs">{{ isoToTime(message?.createdAt) }}</small>
       </div>
     </div>
-    <TheChatInput/>
+    <TheChatInput />
   </div>
+  <!--  <TheLog :data="otherUser"/>-->
 </template>
 
 <script setup lang="ts">
+
+
 definePageMeta({layout: false})
+import type {SocketData} from "~/types/app";
+
+const socket = useSocketIo()
 const userId = useCookie('userId')
+const route = useRoute()
+const chatId = route.params.id
+const loading = ref(false)
+const messages = ref<Record<string, any>[]>([])
+const {data: chat, } = useAsyncData('get-chat-id', () => getChat(chatId, {
+  'with-userOnChats.with-user.with-profile': true,
+  'with-messages':true
+}))
+const getMessages = async () => {
+
+  const {result} = await useGet<Record<string, any>[]>('/Message', {
+    params: {
+      "chatId:eq": chatId,
+    }
+  })
+  if (result) messages.value = result
+
+}
+const handleMessage = ({method, data}: SocketData) => {
+  if (method === 'create') {
+    messages.value.push(data)
+  }
+}
+const connect = async () => {
+  watchSocket(socket, {
+    model: 'message',
+    coll: 'chatId',
+    value: chatId
+  }, handleMessage,loading,getMessages)
+
+}
+onMounted(() => {
+  connect()
+})
+
+
 </script>
