@@ -1,9 +1,9 @@
 <template>
   <div class="h-full w-full h-full flexCol">
     <TheChatHeader :chat="chat"/>
-    <div class="flex  flex-col justify-end gap-7 p-4 bg-gray-900 flex-1 pb-18  ">
+    <div id="messages-container" class="flex  flex-col justify-end gap-7 p-4 bg-gray-900 flex-1 pb-18  ">
 
-      <div class="relative rounded-md p-2 max-w-3/4  flexCol gap-1" v-for="message in chat?.messages"
+      <div class="relative rounded-md p-2 max-w-3/4  flexCol gap-1" v-for="message in messages"
            :class="message?.userId === userId ? 'bg-secondary-400 rounded-tr-none'
            :'bg-primary-500 self-end rounded-tl-none '"
       >
@@ -18,7 +18,7 @@
         <small class="self-end text-xs">{{ isoToTime(message?.createdAt) }}</small>
       </div>
     </div>
-    <TheChatInput />
+    <TheChatInput @refresh="refresh"/>
   </div>
   <!--  <TheLog :data="otherUser"/>-->
 </template>
@@ -28,16 +28,16 @@
 
 definePageMeta({layout: false})
 import type {SocketData} from "~/types/app";
-
+import { nextTick, onMounted, ref } from 'vue'
 const socket = useSocketIo()
 const userId = useCookie('userId')
 const route = useRoute()
 const chatId = route.params.id
 const loading = ref(false)
 const messages = ref<Record<string, any>[]>([])
-const {data: chat, } = useAsyncData('get-chat-id', () => getChat(chatId, {
+const {data: chat,refresh } = useAsyncData('get-chat-id', () => getChat(chatId, {
   'with-userOnChats.with-user.with-profile': true,
-  'with-messages':true
+  // 'with-messages':true
 }))
 const getMessages = async () => {
 
@@ -62,8 +62,18 @@ const connect = async () => {
   }, handleMessage,loading,getMessages)
 
 }
-onMounted(() => {
-  connect()
+const scrollToDown = ()=>{
+  // window.scrollTo({
+  //   top: document.body.scrollHeight,
+  //   behavior: 'smooth'
+  // });
+  const el = document.getElementById('messages-container')
+  if (el) el.scrollTop = el.scrollHeight
+}
+onMounted(async() => {
+  await nextTick()
+  await connect()
+  scrollToDown()
 })
 
 
